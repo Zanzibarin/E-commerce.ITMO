@@ -1,0 +1,89 @@
+﻿@*Define the model*@
+@model Play
+
+@*Define view data*@
+@{
+    ViewData["Title"] = "О спектакле";
+}
+
+@*Write code*@
+<div class = "row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model.Name
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model.ImageURL" width="100%" alt="@Model.Name">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="card-text">@Model.Description</p>
+                        <p class="card-text">
+                            <b>Сцена: </b>
+                            <a asp-controller="Stages" asp-action="Details" asp-route-id="@Model.StageId">
+                                @Model.Stage.Name
+                            </a>
+                        </p>
+                        <p class="card-text">
+                            <b>Режиссёр: </b>
+                            <a asp-controller="Directors" asp-action="Details" asp-route-id="@Model.DirectorId">
+                                @Model.Director.FullName
+                            </a>
+                        </p>
+                        <p class="card-text"><b>Жанр: </b>@Model.PlayCategory</p>
+                        <p class="card-text"><b>Начало показа: </b>@Model.StartDate.ToString("dd MMM yyyy")</p>
+                        <p class="card-text"><b>Окончание показа: </b>@Model.EndDate.ToString("dd MMM yyyy")</p>
+                        <p class="card-text ">
+                            <b>Status: </b>
+                            @if(DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
+                            {
+                                <span class="badge bg-success text-white">Сейчас идёт</span>
+                            }
+                            else if (DateTime.Now > Model.EndDate)
+                            {
+                                <span class="badge bg-danger text-white">Прошёл</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-primary text-white">Скоро премьера</span>
+                            }
+                        </p>
+                        <p class="card-text">
+                            <b>Актёры: </b>
+                            <hr/>
+                            <div class="row">
+                                @foreach (var actor in Model.Actors_Plays)
+                               {
+                                   <div class="column text-center">
+                                       <img class="border-info rounded-circle" src="@actor.Actor.ProfilePictureURL" style="max-width: 150px"/>
+                                       <br/>
+                                       <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.FullName</a>
+                                   </div>
+                               }
+                            </div>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer ">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                На главную страницу
+                            </a>
+                            <a class="btn btn-success text-white" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i>Добавить в корзину (Цена @Model.Price.ToString("c"))</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
