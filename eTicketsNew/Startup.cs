@@ -91,7 +91,7 @@ namespace eTicketsNew
 
             //Seed batabase
             AppDbInitializer.Seed(app);
-            //AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
+            AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 
         }
     }
