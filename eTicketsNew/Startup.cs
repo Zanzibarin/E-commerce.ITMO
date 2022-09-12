@@ -13,6 +13,9 @@ using Microsoft.EntityFrameworkCore;
 using eTicketsNew.Data.Services;
 using Microsoft.AspNetCore.Http;
 using eTicketsNew.Data.Cart;
+using eTicketsNew.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace eTicketsNew
 {
@@ -41,7 +44,15 @@ namespace eTicketsNew
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 
+
+            //Authentication and authorization
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddMemoryCache();
             services.AddSession();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
 
             services.AddControllersWithViews();
         }
@@ -65,6 +76,10 @@ namespace eTicketsNew
             app.UseRouting();
             app.UseSession();
 
+            //Authentication & Authorization
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -76,6 +91,8 @@ namespace eTicketsNew
 
             //Seed batabase
             AppDbInitializer.Seed(app);
+            //AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
+
         }
     }
 }
