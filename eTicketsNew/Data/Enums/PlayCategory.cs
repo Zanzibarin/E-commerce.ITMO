@@ -4,10 +4,10 @@ namespace eTicketsNew.Data.Enums
 {
     public enum PlayCategory
     {
-        Drama,
-        Comedy,
-        Musical,
-        Tragedy,
-        Kids
+        Драма,
+        Комадия,
+        Мьюзикл,
+        Трагедия,
+        Детский
     }
 }

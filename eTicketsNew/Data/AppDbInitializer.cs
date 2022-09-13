@@ -117,7 +117,7 @@ namespace eTicketsNew.Data
                             EndDate = DateTime.Now.AddDays(10),
                             StageId = 3,
                             DirectorId = 3,
-                            PlayCategory = Enums.PlayCategory.Drama
+                            PlayCategory = Enums.PlayCategory.Драма
                         },
                         new Play()
                         {
@@ -129,7 +129,7 @@ namespace eTicketsNew.Data
                             EndDate = DateTime.Now.AddDays(10),
                             StageId = 3,
                             DirectorId = 3,
-                            PlayCategory = Enums.PlayCategory.Musical
+                            PlayCategory = Enums.PlayCategory.Мьюзикл
                         },
                         new Play()
                         {
@@ -141,7 +141,7 @@ namespace eTicketsNew.Data
                             EndDate = DateTime.Now.AddDays(10),
                             StageId = 3,
                             DirectorId = 3,
-                            PlayCategory = Enums.PlayCategory.Tragedy
+                            PlayCategory = Enums.PlayCategory.Трагедия
                         }
 
                     });
