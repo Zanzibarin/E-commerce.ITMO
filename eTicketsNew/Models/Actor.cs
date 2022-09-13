@@ -16,7 +16,6 @@ namespace eTicketsNew.Models
 
         [Display(Name = "ФИО")]
         [Required(ErrorMessage = "Укажите ФИО")]
-        [StringLength(100, MinimumLength =10, ErrorMessage = "ФИО не короче 3-х, и не длиннее 100 символов!")]
         public string FullName { get; set; }
 
         [Display(Name = "Биография")]
