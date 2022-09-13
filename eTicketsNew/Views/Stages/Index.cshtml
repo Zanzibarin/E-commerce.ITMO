@@ -18,7 +18,6 @@
                     <th>Действия</th>
                 </tr>
             </thead>
-
             <tbody>
                 @foreach (var item in Model)
                 {
@@ -29,7 +28,7 @@
                         <td class="align-middle">
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td class="align-middle">
+                        <td class="align-middle" >
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td class="align-middle">
